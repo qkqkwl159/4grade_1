@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 int main(void){
 
 
-	FILE *fp = fopen("userData.csv", "w");
+	FILE *fp = fopen("userData.csv", "a");
 	int select_num = 0;
 	char name[255];
+	char age[255];
+	char email[255];
+	char cont[10];
 	while(1){
 		printf("1. 신규회원 저장\n");
 		printf("2. 회원정보 수정\n");
@@ -18,23 +22,40 @@ int main(void){
 		scanf("%d",&select_num);
 
 
-		switch(select_num){
-			case 1:
+		while(1){
+			if(select_num == 1){
 				printf("이름: ");
-				fscanf(fp, "%s", name);
-				break;
-			case 2:
-				printf("2");
-				break;
-			case 3:
-				printf("3");
-				break;
-			case 4:
-				printf("4");
-				break;
-			case 5:
-				printf("5");
+				scanf("%s", name);
+				fputs(strcat(name,","),fp);
+
+				printf("나이: ");
+				scanf("%s", age);
+				fputs(strcat(age,","),fp);
+
+				printf("이메일: ");
+				scanf("%s", email);
+				fputs(email,fp);
+
+				fputs("\n",fp);
+
+				printf("계속 입력할까요? (Y/N)");
+				scanf("%s", cont);
+				if(cont == "Y"){
+					continue;
+				}
+				else{
+					break;
+				}
+			}
+			if(select_num == 2){
+			}
+			if(select_num == 3){
+			}
+			if(select_num == 4){
+			}
+			if(select_num == 5){
 				return 0;
+			}
 		}
 	}
 	fprintf(fp, "test");
